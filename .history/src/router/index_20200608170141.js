@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+  const routes = [
   {
     path: '/',
     name: 'Home',
@@ -14,16 +14,16 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: () => import('../views/register/Register'),
-    meta: {
-      title: '注册页'
+    meta : {
+      title : '注册页'
     }
   },
   {
     path: '/login',
     name: 'Login',
     component: () => import('../views/login/Login'),
-    meta: {
-      title: '登录页'
+    meta : {
+      title : '登录页'
     }
   },
 ]
@@ -33,7 +33,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-let whitePath = ['/login', '/register',]
+let whitePath = ['/login', '/register', '/findPwd']
 
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
