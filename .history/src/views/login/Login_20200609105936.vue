@@ -98,7 +98,7 @@ export default {
         let user = {
           username: this.username
         };
-       sessionStorage.setItem("user", JSON.stringify(user[0]));
+       sessionStorage.setItem("user", JSON.stringify(user));
         this.$router.push("/");
       });
     },
