@@ -71,14 +71,6 @@ const routes = [
           title: '图片上传页'
         }
       },
-      {
-        path: 'logout',
-        name: 'Logout',
-        component: () => import('../views/logout/Logout'),
-        meta: {
-          title: '退出系统页'
-        }
-      },
     ]
   },
   {

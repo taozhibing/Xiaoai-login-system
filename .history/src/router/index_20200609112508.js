@@ -63,22 +63,6 @@ const routes = [
           title: '导出excel页'
         }
       },
-      {
-        path: 'picturesUploaded',
-        name: 'PicturesUploaded',
-        component: () => import('../views/picturesUploaded/PicturesUploaded'),
-        meta: {
-          title: '图片上传页'
-        }
-      },
-      {
-        path: 'logout',
-        name: 'Logout',
-        component: () => import('../views/logout/Logout'),
-        meta: {
-          title: '退出系统页'
-        }
-      },
     ]
   },
   {

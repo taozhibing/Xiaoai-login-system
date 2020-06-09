@@ -47,38 +47,6 @@ const routes = [
           title: '发表文章页'
         }
       },
-      {
-        path: 'label',
-        name: 'Label',
-        component: () => import('../views/label/Label'),
-        meta: {
-          title: '标签页'
-        }
-      },
-      {
-        path: 'deriveExcel',
-        name: 'DeriveExcel',
-        component: () => import('../views/deriveExcel/DeriveExcel'),
-        meta: {
-          title: '导出excel页'
-        }
-      },
-      {
-        path: 'picturesUploaded',
-        name: 'PicturesUploaded',
-        component: () => import('../views/picturesUploaded/PicturesUploaded'),
-        meta: {
-          title: '图片上传页'
-        }
-      },
-      {
-        path: 'logout',
-        name: 'Logout',
-        component: () => import('../views/logout/Logout'),
-        meta: {
-          title: '退出系统页'
-        }
-      },
     ]
   },
   {
