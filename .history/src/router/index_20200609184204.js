@@ -106,7 +106,7 @@ const router = new VueRouter({
 })
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title
-  let user = sessionStorage.getItem('user')
+  let user = localStorage.getItem('user')
   if (to.path === '/login' || to.path === '/register' ) {
     next()
   } else {

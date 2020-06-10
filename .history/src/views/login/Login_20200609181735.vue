@@ -5,8 +5,8 @@
         <div slot="header" class="clearfix">
           <span style="display:flex;justify-content: center">欢迎来到小爱后台管理系统</span>
         </div>
-        <div class="dv">
-          <div style="width: 350px">
+        <div>
+          <div style="width: 400px">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="120px">
               <el-form-item label="请输入用户名" prop="username">
                 <el-input v-model="ruleForm.username"></el-input>
@@ -14,9 +14,15 @@
               <el-form-item label="请输入密码" prop="password">
                 <el-input v-model="ruleForm.password" show-password></el-input>
               </el-form-item>
+             <div style="display:flex">
+              <el-form-item label="请输入验证码" prop="code">
+                <el-input v-model="ruleForm.code"></el-input>
+              </el-form-item>
+              <span v-html="code" @click="getCode"></span>
+             </div>
               <div style="display:flex;justify-content: center">
                 <el-form-item>
-                  <el-button type="primary" @click="register">立即注册</el-button>
+                  <el-button type="primary">立即注册</el-button>
                 </el-form-item>
                 <el-form-item>
                   <el-button type="primary" @click="login">立即登录</el-button>
@@ -33,14 +39,15 @@
 <script>
 import axios from "axios";
 export default {
-  name: "Register",
+  name: "Login",
   props: {},
   components: {},
   data() {
     return {
+       code : '',
       ruleForm: {
         username: "",
-        password: ""
+        password: "",
       },
       rules: {
         username: [
@@ -68,43 +75,45 @@ export default {
             message: "密码在6-15位之间",
             trigger: "blur"
           }
+        ],
+        code : [
+          {
+            required: true,
+            message: "验证码不能为空",
+            trigger: "blur"
+          },
         ]
       }
     };
   },
   methods: {
     login() {
-      this.$router.push("/login");
-    },
-    register() {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
-          axios
-            .post(`/api/user/register`, {
-              username: this.ruleForm.username,
-              password: this.ruleForm.password
-            })
-            .then(res => {
-              if (res.data.code === 200) {
-                this.$message.success("注册成功");
-                this.$router.push("/login");
-              } else {
-                this.$message.error(res.data.message);
-                // username: "";
-                // password: "";
-              }
-            })
-            .cath(err => {
-              console.log(err);
-            });
+          this.$message.success("登录成功");
         } else {
           this.$message.error("填写有误,请检查");
-          return;
+          return false;
         }
+        let user = {
+          username: this.username
+        };
+       localStorage.setItem("user", JSON.stringify(user));
+        this.$router.push("/");
       });
+    },
+    getCode() {
+      axios.get("/api/captcha").then(res => {
+        this.code=res.data
+        console.log(res.data);
+      }).cath(err => {
+        console.log(err);
+      })
     }
   },
-  mounted() {},
+  mounted() {
+    this.getCode()
+  },
   watch: {},
   computed: {}
 };
@@ -117,8 +126,8 @@ export default {
   align-content: center;
 }
 .box-card {
-  width: 500px;
-  height: 300px;
+  width: 600px;
+  height: 400px;
 }
 .text {
   font-size: 14px;

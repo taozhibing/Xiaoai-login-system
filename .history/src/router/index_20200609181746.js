@@ -104,10 +104,12 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-router.beforeEach((to, from, next) => {
+let whitePath = ['/login', '/register',]
+
+router.beforeEach((to, From, next) => {
   document.title = to.meta.title
-  let user = sessionStorage.getItem('user')
-  if (to.path === '/login' || to.path === '/register' ) {
+  let user = JSON.parse(localStorage.getItem('user'))
+  if (whitePath.includes(to.path)) {
     next()
   } else {
     user ? next() : next('/login')

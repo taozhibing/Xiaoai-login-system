@@ -3,7 +3,7 @@
     <el-container>
       <el-header>
         <div>欢迎{{obj.username}}来到小爱后台管理系统</div>
-        <span>{{hour}}{{obj.username}} 登录时间：{{time}}</span>
+        <div>{{hour}}{{obj.username}} 登录时间：{{time}}</div>
       </el-header>
       <el-container>
         <el-aside width="200px" height="1000px">
@@ -69,23 +69,23 @@ export default {
   components: {},
   data() {
     return {
-      obj: {},
+      obj: [],
       hour : '',
       time : ''
     };
   },
   methods: {},
   mounted() {
-    this.obj = JSON.parse(localStorage.getItem("user"));
-    this.time = dayjs().format("YYYY年MM月DD日HH时mm分ss秒");
-    let hour = dayjs().format('HH')
-    if(hour >= 6 && hour < 12) {
+    this.obj = JSON.parse(sessionStorage.getItem("user"));
+    this.time = dayjs(this.obj.date).format("YYYY年MM月DD日HH时mm分ss秒");
+    let hour = dayjs(this.obj.date).format('HH')
+    if(hour > 6 && hour <= 12) {
       this.hour = "早上好，亲爱的"
-    }else if (hour >= 12 && hour < 14) {
+    }else if (hour > 12 && hour <= 14) {
       this.hour = "中午好，亲爱的"
-    }else if (hour >= 14 && hour < 18) {
+    }else if (hour > 14 && hour <= 18) {
       this.hour = "下午好，亲爱的"
-    }else if (hour >= 18 && hour < 24) {
+    }else if (hour > 18 && hour <= 24) {
       this.hour = "晚上好，亲爱的"
     }else {
       this.hour = "该睡觉了，亲爱的"
@@ -98,14 +98,9 @@ export default {
 
 <style scoped lang='scss'>
 .el-header {
-  background: rgb(46, 94, 133);
+  background-color: rgb(46, 94, 133);
   color: #eee;
-  width: 100%;
-  height: 30px;
-  font-size: 14px;
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
+  
   line-height: 60px;
 }
 

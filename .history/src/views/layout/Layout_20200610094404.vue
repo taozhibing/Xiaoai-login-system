@@ -79,13 +79,13 @@ export default {
     this.obj = JSON.parse(localStorage.getItem("user"));
     this.time = dayjs().format("YYYY年MM月DD日HH时mm分ss秒");
     let hour = dayjs().format('HH')
-    if(hour >= 6 && hour < 12) {
+    if(hour > 6 && hour <= 12) {
       this.hour = "早上好，亲爱的"
-    }else if (hour >= 12 && hour < 14) {
+    }else if (hour > 12 && hour <= 14) {
       this.hour = "中午好，亲爱的"
-    }else if (hour >= 14 && hour < 18) {
+    }else if (hour > 14 && hour <= 18) {
       this.hour = "下午好，亲爱的"
-    }else if (hour >= 18 && hour < 24) {
+    }else if (hour > 18 && hour < 24) {
       this.hour = "晚上好，亲爱的"
     }else {
       this.hour = "该睡觉了，亲爱的"

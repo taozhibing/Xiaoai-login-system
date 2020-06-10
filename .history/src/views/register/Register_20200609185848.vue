@@ -19,7 +19,7 @@
                   <el-button type="primary" @click="register">立即注册</el-button>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="primary" @click="login">立即登录</el-button>
+                  <el-button type="primary">立即登录</el-button>
                 </el-form-item>
               </div>
             </el-form>
@@ -73,9 +73,6 @@ export default {
     };
   },
   methods: {
-    login() {
-      this.$router.push("/login");
-    },
     register() {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
@@ -90,8 +87,8 @@ export default {
                 this.$router.push("/login");
               } else {
                 this.$message.error(res.data.message);
-                // username: "";
-                // password: "";
+                username: "";
+                password: "";
               }
             })
             .cath(err => {

@@ -90,8 +90,8 @@ export default {
                 this.$router.push("/login");
               } else {
                 this.$message.error(res.data.message);
-                // username: "";
-                // password: "";
+                username: "";
+                password: "";
               }
             })
             .cath(err => {
