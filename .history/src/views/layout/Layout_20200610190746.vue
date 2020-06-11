@@ -101,7 +101,7 @@ export default {
 <style scoped lang='scss'>
 .el-container {
   width: 100%;
-  height: 1500px;
+  height: 1000px;
 }
 .el-header {
   background: rgb(46, 94, 133);

@@ -4,14 +4,9 @@
       <home-top></home-top>
       <home-chart></home-chart>
       <div style="display:flex;justify-content: space-around;">
-       <div><home-charta></home-charta></div>
-       <div><home-chartb></home-chartb></div>
-       <div><home-chartc></home-chartc></div>
-      </div>
-      <div style="display:flex;justify-content: space-around;">
-       <div><home-chartd></home-chartd></div>
-       <div><home-charte></home-charte></div>
-       <div><home-chartf></home-chartf></div>
+        <div><home-charta></home-charta></div>
+       <div> <home-chartb></home-chartb></div>
+       <div> <home-chartc></home-chartc></div>
       </div>
     </div>
   </div>
@@ -23,9 +18,6 @@ import homeChart from "../components/home/homeChart";
 import homeCharta from "../components/home/homeCharta";
 import homeChartb from "../components/home/homeChartb";
 import homeChartc from "../components/home/homeChartc";
-import homeChartd from "../components/home/homeChartd";
-import homeCharte from "../components/home/homeChartd";
-import homeChartf from "../components/home/homeChartd";
 export default {
   name: "",
   props: {},
@@ -35,9 +27,6 @@ export default {
     homeCharta,
     homeChartb,
     homeChartc,
-    homeChartd,
-    homeCharte,
-    homeChartf,
   },
   data() {
     return {};

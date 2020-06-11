@@ -9,9 +9,9 @@
        <div><home-chartc></home-chartc></div>
       </div>
       <div style="display:flex;justify-content: space-around;">
-       <div><home-chartd></home-chartd></div>
-       <div><home-charte></home-charte></div>
-       <div><home-chartf></home-chartf></div>
+        <div><home-chartd></home-chartd></div>
+        <div><home-charte></home-charte></div>
+        <div><home-chartf></home-chartf></div>
       </div>
     </div>
   </div>

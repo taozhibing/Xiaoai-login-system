@@ -18,7 +18,7 @@
                   text-color="#fff"
                   active-text-color="#ffd04b"
                 >
-                  <el-menu-item index="/">
+                  <el-menu-item index="">
                     <i class="el-icon-location"></i>
                     <span slot="title">首页</span>
                   </el-menu-item>
@@ -101,7 +101,7 @@ export default {
 <style scoped lang='scss'>
 .el-container {
   width: 100%;
-  height: 1500px;
+  height: 1000px;
 }
 .el-header {
   background: rgb(46, 94, 133);
@@ -125,6 +125,7 @@ export default {
   background-color: #e9eef3;
   color: #333;
   text-align: center;
+  line-height: 160px;
   padding: 0 !important;
 }
 </style>
