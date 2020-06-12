@@ -54,12 +54,25 @@
       layout="total, sizes, prev, pager, next, jumper"
       :total="tableData.length"
     ></el-pagination>
+    <br />
+    <div class="box">
+      <div class="excel">
+        <download-excel class="export-excel-wrapper" :data="tableData" name="goods.xls">
+          <el-button type="primary" size="small">导出xls</el-button>
+        </download-excel>
+      </div>
+      <div class="csv">
+        <download-excel class="export-excel-wrapper" :data="tableData" type="csv" name="goods.xls">
+          <el-button type="danger" size="small">导出csv</el-button>
+        </download-excel>
+      </div>
+    </div>
   </div>
 </template>
 <script>
 import axios from "axios";
 export default {
-  name: "PagingForm",
+  name: "DeriveExcel",
   props: {},
   components: {},
   data() {
@@ -69,7 +82,7 @@ export default {
       pagesize: 10, //默认一页多少条
       search: "",
       dialogVisible: false,
-      obj : {}
+      obj: {}
     };
   },
   methods: {
@@ -77,12 +90,10 @@ export default {
       this.tableData.splice(index, 1);
     },
     handleEdit(row) {
-        this.dialogVisible = true
-        this.obj = row
-      },
-      handleClose(dialogVisible) {
-
-      },
+      this.dialogVisible = true;
+      this.obj = row;
+    },
+    handleClose(dialogVisible) {},
     getData() {
       axios
         .get("/api/tableData")
@@ -125,5 +136,15 @@ export default {
 .dv {
   width: 300px;
   margin: 10px 10px 10px;
+}
+.box {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  margin-left: 60px;
+  margin-top: 40px;
+}
+.csv {
+  margin-left: 40px;
 }
 </style>

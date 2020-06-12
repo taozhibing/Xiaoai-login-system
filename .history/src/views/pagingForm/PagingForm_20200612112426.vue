@@ -1,12 +1,9 @@
 <template>
   <div>
-    <div class="dv">
+    <div class="dv" :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))">
       <el-input v-model="search" size="mini" placeholder="请输入您想搜索的商品名称" />
     </div>
-    <el-table
-      :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize)"
-      style="width: 100%"
-    >
+    <el-table :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize)" style="width: 100%">
       <el-table-column label="姓名" width="300" prop="NAME"></el-table-column>
       <el-table-column label="商品编号" width="220" prop="GOODS_SERIAL_NUMBER"></el-table-column>
       <el-table-column label="原价" width="240" prop="ORI_PRICE"></el-table-column>
@@ -17,7 +14,7 @@
             size="mini"
             type="primary"
             icon="el-icon-edit"
-            @click="handleEdit(scope.row)"
+            @click="handleEdit(scope.$index, scope.row)"
           >修改</el-button>
           <el-button
             size="mini"
@@ -28,23 +25,6 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="修改" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
-      <el-form>
-        <el-form-item label="名称" label-width="40px">
-          <el-input v-model="obj.NAME" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="原价" label-width="40px">
-          <el-input v-model="obj.ORI_PRICE" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="现价" label-width="40px">
-          <el-input v-model="obj.PRESENT_PRICE" autocomplete="off"></el-input>
-        </el-form-item>
-      </el-form>
-      <span slot="footer" class="dialog-footer">
-        <el-button @click="dialogVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-      </span>
-    </el-dialog>
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
@@ -67,22 +47,13 @@ export default {
       tableData: [],
       currentPage: 1, //默认第几页
       pagesize: 10, //默认一页多少条
-      search: "",
-      dialogVisible: false,
-      obj : {}
+      search: ''
     };
   },
   methods: {
     handleDelete(index, row) {
       this.tableData.splice(index, 1);
     },
-    handleEdit(row) {
-        this.dialogVisible = true
-        this.obj = row
-      },
-      handleClose(dialogVisible) {
-
-      },
     getData() {
       axios
         .get("/api/tableData")
@@ -103,20 +74,7 @@ export default {
   mounted() {
     this.getData();
   },
-  watch: {
-    search(val) {
-      axios
-        .get("/api/tableData")
-        .then(res => {
-          this.tableData = res.data.data.filter(item => {
-            return JSON.stringify(item).includes(val);
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    }
-  },
+  watch: {},
   computed: {}
 };
 </script>

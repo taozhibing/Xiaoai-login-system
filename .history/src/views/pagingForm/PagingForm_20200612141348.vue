@@ -80,7 +80,7 @@ export default {
         this.dialogVisible = true
         this.obj = row
       },
-      handleClose(dialogVisible) {
+      handleClose() {
 
       },
     getData() {

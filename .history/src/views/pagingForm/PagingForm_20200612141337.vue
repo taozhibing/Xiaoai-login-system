@@ -33,10 +33,10 @@
         <el-form-item label="名称" label-width="40px">
           <el-input v-model="obj.NAME" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="原价" label-width="40px">
+        <el-form-item label="原价">
           <el-input v-model="obj.ORI_PRICE" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="现价" label-width="40px">
+        <el-form-item label="现价">
           <el-input v-model="obj.PRESENT_PRICE" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -80,7 +80,7 @@ export default {
         this.dialogVisible = true
         this.obj = row
       },
-      handleClose(dialogVisible) {
+      handleClose() {
 
       },
     getData() {

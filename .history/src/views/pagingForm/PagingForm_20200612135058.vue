@@ -30,13 +30,13 @@
     </el-table>
     <el-dialog title="修改" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
       <el-form>
-        <el-form-item label="名称" label-width="40px">
+        <el-form-item label="名称">
           <el-input v-model="obj.NAME" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="原价" label-width="40px">
+        <el-form-item label="原价">
           <el-input v-model="obj.ORI_PRICE" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="现价" label-width="40px">
+        <el-form-item label="现价">
           <el-input v-model="obj.PRESENT_PRICE" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
@@ -78,9 +78,9 @@ export default {
     },
     handleEdit(row) {
         this.dialogVisible = true
-        this.obj = row
+        this.obj = this.row
       },
-      handleClose(dialogVisible) {
+      handleClose() {
 
       },
     getData() {

@@ -29,15 +29,15 @@
       </el-table-column>
     </el-table>
     <el-dialog title="修改" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
-      <el-form>
-        <el-form-item label="名称" label-width="40px">
-          <el-input v-model="obj.NAME" autocomplete="off"></el-input>
+      <el-form :model="form">
+        <el-form-item label="名称" :label-width="formLabelWidth">
+          <el-input v-model="form.NAME" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="原价" label-width="40px">
-          <el-input v-model="obj.ORI_PRICE" autocomplete="off"></el-input>
+        <el-form-item label="原价" :label-width="formLabelWidth">
+          <el-input v-model="form.ORI_PRICE" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="现价" label-width="40px">
-          <el-input v-model="obj.PRESENT_PRICE" autocomplete="off"></el-input>
+        <el-form-item label="现价" :label-width="formLabelWidth">
+          <el-input v-model="form.PRESENT_PRICE" autocomplete="off"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -69,7 +69,7 @@ export default {
       pagesize: 10, //默认一页多少条
       search: "",
       dialogVisible: false,
-      obj : {}
+      from : {}
     };
   },
   methods: {
@@ -78,10 +78,7 @@ export default {
     },
     handleEdit(row) {
         this.dialogVisible = true
-        this.obj = row
-      },
-      handleClose(dialogVisible) {
-
+        this.from = this.row
       },
     getData() {
       axios

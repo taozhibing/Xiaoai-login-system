@@ -59,7 +59,7 @@
 <script>
 import axios from "axios";
 export default {
-  name: "PagingForm",
+  name: "DeriveExcel",
   props: {},
   components: {},
   data() {

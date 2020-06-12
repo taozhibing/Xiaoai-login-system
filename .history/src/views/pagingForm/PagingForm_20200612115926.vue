@@ -17,7 +17,7 @@
             size="mini"
             type="primary"
             icon="el-icon-edit"
-            @click="handleEdit(scope.row)"
+            @click="handleEdit(scope.$index, scope.row)"
           >修改</el-button>
           <el-button
             size="mini"
@@ -28,16 +28,16 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-dialog title="修改" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
-      <el-form>
-        <el-form-item label="名称" label-width="40px">
-          <el-input v-model="obj.NAME" autocomplete="off"></el-input>
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+      <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="名称">
+          <el-input v-model="form.NAME"></el-input>
         </el-form-item>
-        <el-form-item label="原价" label-width="40px">
-          <el-input v-model="obj.ORI_PRICE" autocomplete="off"></el-input>
+        <el-form-item label="原价">
+          <el-input v-model="form.ORI_PRICE"></el-input>
         </el-form-item>
-        <el-form-item label="现价" label-width="40px">
-          <el-input v-model="obj.PRESENT_PRICE" autocomplete="off"></el-input>
+        <el-form-item label="现价">
+          <el-input v-model="form.PRESENT_PRICE"></el-input>
         </el-form-item>
       </el-form>
       <span slot="footer" class="dialog-footer">
@@ -67,21 +67,15 @@ export default {
       tableData: [],
       currentPage: 1, //默认第几页
       pagesize: 10, //默认一页多少条
-      search: "",
-      dialogVisible: false,
-      obj : {}
+      search: ""
     };
   },
   methods: {
     handleDelete(index, row) {
       this.tableData.splice(index, 1);
     },
-    handleEdit(row) {
-        this.dialogVisible = true
-        this.obj = row
-      },
-      handleClose(dialogVisible) {
-
+    handleEdit(index, row) {
+        console.log(index, row);
       },
     getData() {
       axios
