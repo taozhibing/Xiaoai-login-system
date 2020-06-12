@@ -1,21 +1,16 @@
 <template>
   <div>
-    <div class="dv">
-      <el-input v-model="search" size="mini" placeholder="请输入您想搜索的商品名称" />
-    </div>
-    <el-table :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize)" style="width: 100%">
-      <el-table-column label="姓名" width="300" prop="NAME"></el-table-column>
-      <el-table-column label="商品编号" width="220" prop="GOODS_SERIAL_NUMBER"></el-table-column>
-      <el-table-column label="原价" width="240" prop="ORI_PRICE"></el-table-column>
-      <el-table-column label="现价" width="240" prop="PRESENT_PRICE"></el-table-column>
+    <el-table
+      :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize)"
+      style="width: 100%"
+    >
+      <el-table-column label="姓名" width="300" prop="name"></el-table-column>
+      <el-table-column label="商品编号" width="220" prop="ProidNumber"></el-table-column>
+      <el-table-column label="原价" width="240" prop="originalPrice"></el-table-column>
+      <el-table-column label="现价" width="240" prop="presentPrice"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="primary"
-            icon="el-icon-edit"
-            @click="handleEdit(scope.$index, scope.row)"
-          >修改</el-button>
+          <el-button size="mini" type="primary" icon="el-icon-edit" @click="revise">修改</el-button>
           <el-button
             size="mini"
             type="danger"
@@ -25,17 +20,19 @@
         </template>
       </el-table-column>
     </el-table>
+
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[10, 20, 30, 40, 50 ,60 , 70]"
+      :page-sizes="[10, 20, 30, 40]"
       :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
       :total="tableData.length"
     ></el-pagination>
   </div>
 </template>
+
 <script>
 import axios from "axios";
 export default {
@@ -44,21 +41,21 @@ export default {
   components: {},
   data() {
     return {
-      tableData: [],
+      arr: [],
       currentPage: 1, //默认第几页
-      pagesize: 10, //默认一页多少条
-      search: ''
+      pagesize: 10 //默认一页多少条
     };
   },
   methods: {
     handleDelete(index, row) {
       this.tableData.splice(index, 1);
     },
-    getData() {
+
+    getdata() {
       axios
         .get("/api/tableData")
         .then(res => {
-          this.tableData = res.data.data;
+          this.arr = res.data.data;
         })
         .catch(err => {
           console.log(err);
@@ -72,7 +69,7 @@ export default {
     }
   },
   mounted() {
-    this.getData();
+    this.getdata();
   },
   watch: {},
   computed: {}
@@ -80,8 +77,4 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.dv {
-  width: 300px;
-  margin: 10px 10px 10px;
-}
 </style>

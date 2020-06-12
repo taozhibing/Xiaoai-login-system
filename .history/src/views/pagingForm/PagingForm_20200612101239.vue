@@ -1,27 +1,15 @@
 <template>
   <div>
-    <div class="dv">
-      <el-input v-model="search" size="mini" placeholder="请输入您想搜索的商品名称" />
-    </div>
-    <el-table :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize)" style="width: 100%">
+  <div class="dv"><el-input v-model="text" size="mini" placeholder="请输入您想搜索的商品名称"/></div>
+    <el-table :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize)," style="width: 100%">
       <el-table-column label="姓名" width="300" prop="NAME"></el-table-column>
       <el-table-column label="商品编号" width="220" prop="GOODS_SERIAL_NUMBER"></el-table-column>
       <el-table-column label="原价" width="240" prop="ORI_PRICE"></el-table-column>
       <el-table-column label="现价" width="240" prop="PRESENT_PRICE"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button
-            size="mini"
-            type="primary"
-            icon="el-icon-edit"
-            @click="handleEdit(scope.$index, scope.row)"
-          >修改</el-button>
-          <el-button
-            size="mini"
-            type="danger"
-            icon="el-icon-delete"
-            @click="handleDelete(scope.$index, scope.row)"
-          >删除</el-button>
+          <el-button size="mini" type="primary" icon="el-icon-edit" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
+          <el-button size="mini" type="danger" icon="el-icon-delete" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -44,10 +32,9 @@ export default {
   components: {},
   data() {
     return {
-      tableData: [],
+     tableData: [],
       currentPage: 1, //默认第几页
       pagesize: 10, //默认一页多少条
-      search: ''
     };
   },
   methods: {

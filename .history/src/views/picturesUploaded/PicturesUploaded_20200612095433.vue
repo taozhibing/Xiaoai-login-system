@@ -10,7 +10,7 @@
           <el-upload
             class="upload-demo"
             drag
-            action="/api/upload"
+            action="https://jsonplaceholder.typicode.com/posts/"
             multiple
           >
             <i class="el-icon-upload"></i>
@@ -41,8 +41,8 @@
           :size="size"
           langType="zh"
           :noRotate="false"
-          field="Avatar1"
-          url="/api/upload"
+          field="/server/public/uploads"
+          url="https://jsonplaceholder.typicode.com/posts/"
         ></my-upload>
         <img :src="imgDataUrl" />
       </div>
@@ -74,7 +74,7 @@ export default {
     //上传成功回调
     cropUploadSuccess(jsonData, field) {
       // console.log("-------- upload success --------");
-      this.imgDataUrl = jsonData.files.Avatar1;
+      this.imgDataUrl = jsonData.files.server.public.uploads;
       // console.log(jsonData);
       // console.log("field: " + field);
     },

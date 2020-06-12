@@ -3,7 +3,10 @@
     <div class="dv">
       <el-input v-model="search" size="mini" placeholder="请输入您想搜索的商品名称" />
     </div>
-    <el-table :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize)" style="width: 100%">
+    <el-table
+      :data="tableData.slice((currentPage - 1) * pagesize, currentPage*pagesize),"
+      style="width: 100%"
+    >
       <el-table-column label="姓名" width="300" prop="NAME"></el-table-column>
       <el-table-column label="商品编号" width="220" prop="GOODS_SERIAL_NUMBER"></el-table-column>
       <el-table-column label="原价" width="240" prop="ORI_PRICE"></el-table-column>
@@ -47,7 +50,7 @@ export default {
       tableData: [],
       currentPage: 1, //默认第几页
       pagesize: 10, //默认一页多少条
-      search: ''
+      search: ""
     };
   },
   methods: {
@@ -59,6 +62,7 @@ export default {
         .get("/api/tableData")
         .then(res => {
           this.tableData = res.data.data;
+          console.log(res.data);
         })
         .catch(err => {
           console.log(err);

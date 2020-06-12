@@ -10,7 +10,7 @@
           <el-upload
             class="upload-demo"
             drag
-            action="/api/upload"
+            action="`/api/server/public/uploads`"
             multiple
           >
             <i class="el-icon-upload"></i>
@@ -42,7 +42,7 @@
           langType="zh"
           :noRotate="false"
           field="Avatar1"
-          url="/api/upload"
+          url="https://jsonplaceholder.typicode.com/posts/"
         ></my-upload>
         <img :src="imgDataUrl" />
       </div>
