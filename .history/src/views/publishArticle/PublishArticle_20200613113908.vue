@@ -62,7 +62,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="发布时间">
-            <el-date-picker v-model="value4" type="datetime" placeholder="选择日期时间"></el-date-picker>
+            <el-date-picker v-model="value1" type="datetime" placeholder="选择日期时间"></el-date-picker>
           </el-form-item>
         </div>
       </el-form>
@@ -83,7 +83,6 @@ export default {
       value1: "",
       value2: "",
       value3: "",
-      value4: "",
       numberValidateForm: {
         age: ""
       },

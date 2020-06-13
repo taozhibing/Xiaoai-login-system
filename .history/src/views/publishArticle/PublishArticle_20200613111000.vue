@@ -27,7 +27,7 @@
         >
           <el-input type="text" v-model="articleSummary" autocomplete="off"></el-input>
         </el-form-item>
-        <div class="briefly">
+        <div class="pbitem">
           <el-form-item label="作者" :rules="[{ required: true,}]">
             <el-input type="text" v-model="articleSummary" autocomplete="off"></el-input>
           </el-form-item>
@@ -62,13 +62,13 @@
             </el-select>
           </el-form-item>
           <el-form-item label="发布时间">
-            <el-date-picker v-model="value4" type="datetime" placeholder="选择日期时间"></el-date-picker>
+            <el-input type="text" v-model="articleSummary" autocomplete="off"></el-input>
           </el-form-item>
         </div>
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor />
+      <mavon-editor/>
     </div>
   </div>
 </template>
@@ -80,10 +80,9 @@ export default {
   components: {},
   data() {
     return {
-      value1: "",
+       value1: "",
       value2: "",
       value3: "",
-      value4: "",
       numberValidateForm: {
         age: ""
       },
@@ -162,7 +161,7 @@ export default {
     };
   },
   methods: {
-    submitForm(formName) {
+      submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           alert("submit!");
@@ -195,10 +194,11 @@ export default {
   align-items: center;
   margin-bottom: 15px;
 }
-.briefly .el-form-item {
+.pbitem .el-form-item {
   width: 300px;
+  
 }
-.briefly {
+.pbitem {
   display: flex;
 }
 </style>

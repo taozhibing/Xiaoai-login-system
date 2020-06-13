@@ -12,7 +12,6 @@ import 'mavon-editor/dist/css/index.css'
 Vue.use(ElementUI)
 Vue.use(VCharts)
 Vue.component('downloadExcel', JsonExcel)
-Vue.use(mavonEditor)
 
 Vue.config.productionTip = false
 
