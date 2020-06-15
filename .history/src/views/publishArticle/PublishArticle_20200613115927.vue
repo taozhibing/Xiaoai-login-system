@@ -8,11 +8,15 @@
     </div>
     <div>
       <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="文章标题" prop="title" :rules="[{required: true,message: '请输入文章标题', }]">
-          <el-input v-model="ruleForm.title"></el-input>
+        <el-form-item label="文章标题" prop="arttitle" :rules="[{required: true,message: '请输入文章标题', }]">
+          <el-input v-model="ruleForm.arttitle"></el-input>
         </el-form-item>
-        <el-form-item label="文章摘要" prop="abstract" :rules="[{required: true,message: '请输入文章摘要', }]">
-          <el-input v-model="ruleForm.abstract"></el-input>
+        <el-form-item
+          label="文章摘要"
+          prop="artsummary"
+          :rules="[{required: true,message: '请输入文章摘要', }]"
+        >
+          <el-input v-model="ruleForm.artsummary"></el-input>
         </el-form-item>
         <div class="briefly">
           <el-form-item label="作者" prop="author" :rules="[{required: true,message: '请输入作者', }]">
@@ -38,10 +42,10 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="重要性" prop="star" :rules="[{required: true,}]">
-            <el-select v-model="ruleForm.star" placeholder="请选择">
+          <el-form-item label="重要性" prop="importance" :rules="[{required: true,}]">
+            <el-select v-model="ruleForm.importance" placeholder="请选择">
               <el-option
-                v-for="(item,index) in star"
+                v-for="(item,index) in importance"
                 :key="index"
                 :label="item.lable"
                 :value="item.value"
@@ -50,9 +54,9 @@
           </el-form-item>
           <el-form-item label="发布时间" prop="times">
             <el-date-picker
-              type="datetime"
+              type="date"
               placeholder="选择日期时间"
-              v-model="ruleForm.date"
+              v-model="ruleForm.date1"
               style="width: 100%;"
             ></el-date-picker>
           </el-form-item>
@@ -60,7 +64,7 @@
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor v-model="text" />
+      <mavon-editor />
     </div>
   </div>
 </template>
@@ -73,13 +77,12 @@ export default {
   data() {
     return {
       ruleForm: {
-        title: "",
-        abstract: "",
+        arttitle: "",
+        artsummary: "",
         author: "",
-        category: "",
+        region: "",
         source: "",
-        star: "",
-        date: ""
+        importance: ""
       },
       category: [
         {
@@ -129,7 +132,7 @@ export default {
           value: "国外"
         }
       ],
-      star: [
+      importance: [
         {
           label: "1颗星",
           value: "1颗星"
@@ -150,8 +153,7 @@ export default {
           label: "5颗星",
           value: "5颗星"
         }
-      ],
-      text: ""
+      ]
     };
   },
   methods: {

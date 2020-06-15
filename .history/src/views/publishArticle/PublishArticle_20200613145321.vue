@@ -11,7 +11,11 @@
         <el-form-item label="文章标题" prop="title" :rules="[{required: true,message: '请输入文章标题', }]">
           <el-input v-model="ruleForm.title"></el-input>
         </el-form-item>
-        <el-form-item label="文章摘要" prop="abstract" :rules="[{required: true,message: '请输入文章摘要', }]">
+        <el-form-item
+          label="文章摘要"
+          prop="abstract"
+          :rules="[{required: true,message: '请输入文章摘要', }]"
+        >
           <el-input v-model="ruleForm.abstract"></el-input>
         </el-form-item>
         <div class="briefly">
@@ -60,7 +64,7 @@
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor v-model="text" />
+      <mavon-editor />
     </div>
   </div>
 </template>
@@ -73,13 +77,13 @@ export default {
   data() {
     return {
       ruleForm: {
-        title: "",
-        abstract: "",
+        arttitle: "",
+        artsummary: "",
         author: "",
-        category: "",
+        region: "",
         source: "",
         star: "",
-        date: ""
+        date : ""
       },
       category: [
         {
@@ -129,7 +133,7 @@ export default {
           value: "国外"
         }
       ],
-      star: [
+      importance: [
         {
           label: "1颗星",
           value: "1颗星"
@@ -150,8 +154,7 @@ export default {
           label: "5颗星",
           value: "5颗星"
         }
-      ],
-      text: ""
+      ]
     };
   },
   methods: {

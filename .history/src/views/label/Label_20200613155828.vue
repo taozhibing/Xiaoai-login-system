@@ -6,15 +6,15 @@
           <div v-if=" arr.length > 0">
             <div v-for="(item,index) in arr" :key="index">
               <div class="box1">
-                <div class="tag-a">{{item.name}}</div>
-                <div class="tag-b">
+                <div class="tag2">{{item.name}}</div>
+                <div class="tag3">
                   <div class="box2">{{item.time}}</div>
-                  <el-button class="tag-c" @click="clickRead(item, index)" type="primary">标为已读</el-button>
+                  <el-button class="tag-t" @click="clickRead(item, index)" type="primary">标为已读</el-button>
                 </div>
               </div>
-              <div class="tag-d"></div>
+              <div class="tag1"></div>
             </div>
-            <el-button type="success" class="tag-e" @click="clickA">全部标为已读</el-button>
+            <el-button type="primary" class="tag5" @click="clickA">全部标为已读</el-button>
           </div>
           <div v-else>暂无数据了！</div>
         </div>
@@ -24,16 +24,16 @@
           <div v-if=" ass.length > 0">
             <div v-for="(item,index) in ass" :key="index">
               <div class="box1">
-                <div class="tag-a">{{item.name}}</div>
-                <div class="tag-b">
+                <div class="tag2">{{item.name}}</div>
+                <div class="tag3">
                   <div class="box2">{{item.time}}</div>
 
-                  <el-button class="tag-c" @click="clickDelete(item, index)" type="danger">删除</el-button>
+                  <el-button class="tag-t" @click="clickDelete(item, index)" type="danger">删除</el-button>
                 </div>
               </div>
-              <div class="tag-d"></div>
+              <div class="tag1"></div>
             </div>
-            <el-button type="danger" class="tag-e" @click="clickB">删除全部</el-button>
+            <el-button type="danger" class="tag5" @click="clickB">删除全部</el-button>
           </div>
           <div v-else>暂无数据了！</div>
         </div>
@@ -43,15 +43,15 @@
           <div v-if=" asr.length > 0">
             <div v-for="(item,index) in asr" :key="index">
               <div class="box1">
-                <div class="tag-a">{{item.name}}</div>
-                <div class="tag-b">
+                <div class=" tag2">{{item.name}}</div>
+                <div class=" tag3">
                   <div class="box2">{{item.time}}</div>
-                  <el-button class="tag-c" type="warning" @click="clickReduction(item, index)">还原</el-button>
+                  <el-button class="tag-t" type="warning" @click="clickReduction(item, index)">还原</el-button>
                 </div>
               </div>
-              <div class="tag-d"></div>
+              <div class="tag1"></div>
             </div>
-            <el-button type="info" class="tag-e" @click="clickC">清空回收站</el-button>
+            <el-button type="info" class="tag5" @click="clickC">清空回收站</el-button>
           </div>
           <div v-else>暂无数据了！</div>
         </div>
@@ -144,29 +144,30 @@ export default {
   width: 1280px;
   height: 450px;
 }
-.tag-a {
+.tag2 {
   margin-left: 30px;
   margin-top: 28px;
 }
-.tag-b {
+.tag3 {
   margin-right: 50px;
   margin-top: 10px;
   display: flex;
 }
-.tag-c {
-  margin-top: 10px;
-  margin-left: 15px;
-}
-.tag-d {
+
+.tag1 {
   width: 1200px;
   height: 1px;
   margin-left: 30px;
   margin-top: 20px;
   background: rgb(151, 146, 146);
 }
-.tag-e {
+.tag5 {
   margin-left: 30px;
   margin-top: 30px;
+}
+.tag-t {
+  margin-top: 10px;
+  margin-left: 15px;
 }
 .box1 {
   display: flex;
@@ -174,6 +175,6 @@ export default {
   align-content: center;
 }
 .box2 {
-  margin-top: 18px;
+ margin-top: 18px;
 }
 </style>

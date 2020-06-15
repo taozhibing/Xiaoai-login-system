@@ -11,7 +11,11 @@
         <el-form-item label="文章标题" prop="title" :rules="[{required: true,message: '请输入文章标题', }]">
           <el-input v-model="ruleForm.title"></el-input>
         </el-form-item>
-        <el-form-item label="文章摘要" prop="abstract" :rules="[{required: true,message: '请输入文章摘要', }]">
+        <el-form-item
+          label="文章摘要"
+          prop="abstract"
+          :rules="[{required: true,message: '请输入文章摘要', }]"
+        >
           <el-input v-model="ruleForm.abstract"></el-input>
         </el-form-item>
         <div class="briefly">
@@ -79,7 +83,7 @@ export default {
         category: "",
         source: "",
         star: "",
-        date: ""
+        date : ""
       },
       category: [
         {
@@ -151,7 +155,7 @@ export default {
           value: "5颗星"
         }
       ],
-      text: ""
+       text : ""
     };
   },
   methods: {

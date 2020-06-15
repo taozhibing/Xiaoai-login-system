@@ -14,7 +14,7 @@
               </div>
               <div class="tag-d"></div>
             </div>
-            <el-button type="success" class="tag-e" @click="clickA">全部标为已读</el-button>
+            <el-button type="primary" class="tag-e" @click="clickA">全部标为已读</el-button>
           </div>
           <div v-else>暂无数据了！</div>
         </div>
@@ -43,8 +43,8 @@
           <div v-if=" asr.length > 0">
             <div v-for="(item,index) in asr" :key="index">
               <div class="box1">
-                <div class="tag-a">{{item.name}}</div>
-                <div class="tag-b">
+                <div class=" tag-a">{{item.name}}</div>
+                <div class=" tag-b">
                   <div class="box2">{{item.time}}</div>
                   <el-button class="tag-c" type="warning" @click="clickReduction(item, index)">还原</el-button>
                 </div>
@@ -174,6 +174,6 @@ export default {
   align-content: center;
 }
 .box2 {
-  margin-top: 18px;
+ margin-top: 18px;
 }
 </style>

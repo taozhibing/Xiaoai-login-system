@@ -1,57 +1,58 @@
 <template>
-  <div class="container">
+  <div class="rab">
     <el-tabs v-model="activeName">
-      <el-tab-pane :label="Unread" name="unread">
-        <div class="tag">
+      <el-tab-pane :label="one" name="first">
+        <div class="tab">
           <div v-if=" arr.length > 0">
             <div v-for="(item,index) in arr" :key="index">
               <div class="box1">
-                <div class="tag-a">{{item.name}}</div>
-                <div class="tag-b">
+                <div class="tab2">{{item.name}}</div>
+                <div class="tab3">
                   <div class="box2">{{item.time}}</div>
-                  <el-button class="tag-c" @click="clickRead(item, index)" type="primary">标为已读</el-button>
+                  <el-button class="tab-item1" @click="clickq(item, index)">标为已读</el-button>
                 </div>
               </div>
-              <div class="tag-d"></div>
+              <div class="tab1"></div>
             </div>
-            <el-button type="success" class="tag-e" @click="clickA">全部标为已读</el-button>
+            <el-button type="primary" class="tab5" @click="clicka">全部标为已读</el-button>
           </div>
           <div v-else>暂无数据了！</div>
         </div>
       </el-tab-pane>
-      <el-tab-pane :label="Read" name="read">
-        <div class="tag">
+      <el-tab-pane :label="two" name="second">
+        <div class="tab">
           <div v-if=" ass.length > 0">
             <div v-for="(item,index) in ass" :key="index">
-              <div class="box1">
-                <div class="tag-a">{{item.name}}</div>
-                <div class="tag-b">
-                  <div class="box2">{{item.time}}</div>
+              <div class="d-f j-c-s-b">
+                <div class="m-t-20 tab2">{{item.name}}</div>
+                <div class="d-f tab3">
+                  <div class="m-t-20">{{item.time}}</div>
 
-                  <el-button class="tag-c" @click="clickDelete(item, index)" type="danger">删除</el-button>
+                  <el-button class="tab-item1" @click="clicked(item, index)">删除</el-button>
                 </div>
               </div>
-              <div class="tag-d"></div>
+              <div class="tab1"></div>
             </div>
-            <el-button type="danger" class="tag-e" @click="clickB">删除全部</el-button>
+
+            <el-button type="danger" class="tab5" @click="clickb">删除全部</el-button>
           </div>
           <div v-else>暂无数据了！</div>
         </div>
       </el-tab-pane>
-      <el-tab-pane :label="recycleBin" name="recycle bin">
-        <div class="tag">
+      <el-tab-pane :label="three" name="third">
+        <div class="tab">
           <div v-if=" asr.length > 0">
             <div v-for="(item,index) in asr" :key="index">
-              <div class="box1">
-                <div class="tag-a">{{item.name}}</div>
-                <div class="tag-b">
-                  <div class="box2">{{item.time}}</div>
-                  <el-button class="tag-c" type="warning" @click="clickReduction(item, index)">还原</el-button>
+              <div class="d-f j-c-s-b">
+                <div class="m-t-20 tab2">{{item.name}}</div>
+                <div class="d-f tab3">
+                  <div class="m-t-20">{{item.time}}</div>
+                  <el-button class="tab-item1" type="warning" @click="clickess(item, index)">还原</el-button>
                 </div>
               </div>
-              <div class="tag-d"></div>
+              <div class="tab1"></div>
             </div>
-            <el-button type="info" class="tag-e" @click="clickC">清空回收站</el-button>
+            <el-button type="info" class="tab5" @click="clickc">清空回收站</el-button>
           </div>
           <div v-else>暂无数据了！</div>
         </div>
@@ -68,53 +69,53 @@ export default {
   components: {},
   data() {
     return {
-      activeName: "unread",
+      activeName: "first",
       arr: [
         {
           name: "[系统通知]该系统将于今晚凌晨2点到5点进行升级维护",
-          time: "2018-04-19 20:00:00"
+          time: "2020-6-12 9:03"
         },
         {
           name: "今晚12点整发大红包,先到先得",
-          time: "2018-04-19 21:00:00"
+          time: "2020-6-12 9:03"
         }
       ],
       ass: [
         {
           name: "[系统通知]该系统将于今晚凌晨2点到5点进行升级维护",
-          time: "2020-6-13 15:32"
+          time: "2020-6-12 9:03"
         }
       ],
       asr: [
         {
           name: "[系统通知]您的优惠券已经过期",
-          time: "2020-6-13 15:32"
+          time: "2020-6-12 9:03"
         }
       ]
     };
   },
   methods: {
-    clickRead(item, index) {
+    clickq(item, index) {
       this.arr.splice(index, 1);
       this.ass.push(item);
     },
-    clickDelete(item, index) {
+    clicked(item, index) {
       this.ass.splice(index, 1);
       this.asr.push(item);
     },
-    clickReduction(item, index) {
+    clickess(item, index) {
       this.asr.splice(index, 1);
       this.arr.push(item);
     },
-    clickA() {
+    clicka() {
       this.ass = this.ass.concat(this.arr);
       this.arr = [];
     },
-    clickB() {
+    clickb() {
       this.asr = this.asr.concat(this.ass);
       this.ass = [];
     },
-    clickC() {
+    clickc() {
       this.arr = this.ass.concat(this.arr);
       this.asr = [];
     }
@@ -122,13 +123,13 @@ export default {
   mounted() {},
   watch: {},
   computed: {
-    Unread() {
+    one() {
       return "未读消息" + "(" + this.arr.length + ")";
     },
-    Read() {
+    two() {
       return "已读消息" + "(" + this.ass.length + ")";
     },
-    recycleBin() {
+    three() {
       return "回收站" + "(" + this.asr.length + ")";
     }
   }
@@ -136,44 +137,41 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.container {
+.rab {
   height: 622px;
 }
-.tag {
+.tab {
   background: white;
   width: 1280px;
   height: 450px;
 }
-.tag-a {
+.tab2 {
   margin-left: 30px;
-  margin-top: 28px;
+  margin-top: 20px;
 }
-.tag-b {
+.tab3 {
   margin-right: 50px;
   margin-top: 10px;
-  display: flex;
 }
-.tag-c {
-  margin-top: 10px;
-  margin-left: 15px;
-}
-.tag-d {
+
+.tab1 {
   width: 1200px;
   height: 1px;
   margin-left: 30px;
   margin-top: 20px;
   background: rgb(151, 146, 146);
 }
-.tag-e {
+.tab5 {
   margin-left: 30px;
   margin-top: 30px;
+}
+.tab-item1 {
+  margin-top: 10px;
+  margin-left: 15px;
 }
 .box1 {
   display: flex;
   justify-content: space-between;
   align-content: center;
-}
-.box2 {
-  margin-top: 18px;
 }
 </style>
