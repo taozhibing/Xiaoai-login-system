@@ -31,7 +31,7 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[10]"
+      :page-sizes="[10, 20, 30, 40, 50 ,60 , 70 , 80]"
       :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
       :total="tableData.length"

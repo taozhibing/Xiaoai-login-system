@@ -48,7 +48,7 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="发布时间" prop="date">
+          <el-form-item label="发布时间" prop="times">
             <el-date-picker
               type="datetime"
               placeholder="选择日期时间"
@@ -173,7 +173,6 @@ export default {
             .then(res => {
               if (res.data.code === 200) {
                 this.$message.success("发布成功");
-                this.$router.push('')
               } else {
                 this.$message.error(res.data.message);
               }
@@ -186,7 +185,7 @@ export default {
       });
     },
     checked() {
-      this.$router.push('published')
+      
     }
   },
   mounted() {},

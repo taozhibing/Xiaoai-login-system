@@ -18,7 +18,7 @@
           <el-form-item label="作者" prop="author" :rules="[{required: true,message: '请输入作者', }]">
             <el-input v-model="ruleForm.author"></el-input>
           </el-form-item>
-          <el-form-item label="类目" :rules="[{required: true,}]" prop="category">
+          <el-form-item label="类目" :rules="[{required: true,}]">
             <el-select v-model="ruleForm.category" placeholder="请选择">
               <el-option
                 v-for="(item,index) in category"
@@ -48,7 +48,7 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="发布时间" prop="date">
+          <el-form-item label="发布时间" prop="times">
             <el-date-picker
               type="datetime"
               placeholder="选择日期时间"
@@ -173,7 +173,7 @@ export default {
             .then(res => {
               if (res.data.code === 200) {
                 this.$message.success("发布成功");
-                this.$router.push('')
+                this.$router.push("post");
               } else {
                 this.$message.error(res.data.message);
               }
@@ -186,7 +186,11 @@ export default {
       });
     },
     checked() {
-      this.$router.push('published')
+      axios.get(`/api/article/create`).then(res => {
+        console.log(res.date);
+      }).catch(err => {
+        console.log(err);
+      })
     }
   },
   mounted() {},

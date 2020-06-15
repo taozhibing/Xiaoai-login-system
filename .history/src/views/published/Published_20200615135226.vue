@@ -5,13 +5,11 @@
       style="width: 100%"
     >
       <el-table-column label="标题" width="300" prop="title"></el-table-column>
-      <el-table-column label="作者" width="120" prop="author"></el-table-column>
-      <el-table-column label="类目" width="120" prop="category"></el-table-column>
-      <el-table-column label="来源" width="120" prop="source"></el-table-column>
-      <el-table-column label="重要性" width="120" prop="star"></el-table-column>
-      <el-table-column label="发布时间" width="200" prop="date"></el-table-column>
+      <el-table-column label="作者" width="220" prop="GOODS_SERIAL_NUMBER"></el-table-column>
+      <el-table-column label="原价" width="240" prop="ORI_PRICE"></el-table-column>
+      <el-table-column label="现价" width="240" prop="PRESENT_PRICE"></el-table-column>
       <el-table-column label="操作">
-        <!-- <template slot-scope="scope">
+        <template slot-scope="scope">
           <el-button
             size="mini"
             type="primary"
@@ -24,18 +22,9 @@
             icon="el-icon-delete"
             @click="handleDelete(scope.$index, scope.row)"
           >删除</el-button>
-        </template>-->
+        </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="currentPage"
-      :page-sizes="[10]"
-      :page-size="10"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="tableData.length"
-    ></el-pagination>
   </div>
 </template>
 
@@ -47,9 +36,7 @@ export default {
   components: {},
   data() {
     return {
-      tableData: [],
-      currentPage: 1, //默认第几页
-      pagesize: 10
+      article: []
     };
   },
   methods: {
@@ -57,18 +44,12 @@ export default {
       axios
         .get("/api/article/allArticle")
         .then(res => {
-          this.tableData = res.data.data;
+          this.article = this.res.data;
           console.log(res.data);
         })
         .catch(err => {
           console.log(err);
         });
-    },
-    handleSizeChange(val) {
-      this.pageSize = val;
-    },
-    handleCurrentChange(val) {
-      this.currentPage = val;
     }
   },
   mounted() {

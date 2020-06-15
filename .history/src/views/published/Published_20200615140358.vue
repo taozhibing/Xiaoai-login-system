@@ -5,11 +5,11 @@
       style="width: 100%"
     >
       <el-table-column label="标题" width="300" prop="title"></el-table-column>
-      <el-table-column label="作者" width="120" prop="author"></el-table-column>
-      <el-table-column label="类目" width="120" prop="category"></el-table-column>
-      <el-table-column label="来源" width="120" prop="source"></el-table-column>
-      <el-table-column label="重要性" width="120" prop="star"></el-table-column>
-      <el-table-column label="发布时间" width="200" prop="date"></el-table-column>
+      <el-table-column label="作者" width="220" prop="author"></el-table-column>
+      <el-table-column label="类目" width="240" prop="category"></el-table-column>
+      <el-table-column label="来源" width="240" prop="source"></el-table-column>
+      <el-table-column label="重要性" width="240" prop="star"></el-table-column>
+      <el-table-column label="发布时间" width="240" prop="date"></el-table-column>
       <el-table-column label="操作">
         <!-- <template slot-scope="scope">
           <el-button
@@ -31,7 +31,7 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[10]"
+      :page-sizes="[10, 20, 30, 40, 50 ,60 , 70]"
       :page-size="10"
       layout="total, sizes, prev, pager, next, jumper"
       :total="tableData.length"

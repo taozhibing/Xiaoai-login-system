@@ -186,7 +186,7 @@ export default {
       });
     },
     checked() {
-      this.$router.push('published')
+      
     }
   },
   mounted() {},

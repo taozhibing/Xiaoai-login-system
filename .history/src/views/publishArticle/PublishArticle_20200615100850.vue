@@ -2,7 +2,7 @@
   <div>
     <div class="t-head">
       <div class="header">
-        <el-button type="danger" @click="checked">查看</el-button>
+        <el-button type="danger" >查看</el-button>
         <el-button type="primary" @click="publish">发布</el-button>
       </div>
     </div>
@@ -18,7 +18,7 @@
           <el-form-item label="作者" prop="author" :rules="[{required: true,message: '请输入作者', }]">
             <el-input v-model="ruleForm.author"></el-input>
           </el-form-item>
-          <el-form-item label="类目" :rules="[{required: true,}]" prop="category">
+          <el-form-item label="类目" :rules="[{required: true,}]">
             <el-select v-model="ruleForm.category" placeholder="请选择">
               <el-option
                 v-for="(item,index) in category"
@@ -48,7 +48,7 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="发布时间" prop="date">
+          <el-form-item label="发布时间" prop="times">
             <el-date-picker
               type="datetime"
               placeholder="选择日期时间"
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 export default {
   name: "PublishArticle",
   props: {},
@@ -160,21 +160,20 @@ export default {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           axios
-            .post("/api/article/create", {
+            .post('/api/article/create', {
               title: this.ruleForm.title,
               abstract: this.ruleForm.abstract,
               author: this.ruleForm.author,
               category: this.ruleForm.category,
               source: this.ruleForm.source,
               star: this.ruleForm.star,
-              text: this.text,
+              text: this.ruleForm.text,
               data: this.ruleForm.data
             })
             .then(res => {
               if (res.data.code === 200) {
                 this.$message.success("发布成功");
-                this.$router.push('')
-              } else {
+              }else {
                 this.$message.error(res.data.message);
               }
               console.log(res.data);
@@ -184,9 +183,6 @@ export default {
             });
         }
       });
-    },
-    checked() {
-      this.$router.push('published')
     }
   },
   mounted() {},
