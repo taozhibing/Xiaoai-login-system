@@ -81,7 +81,6 @@ export default {
         .then(res => {
           if (res.data.code === 200) {
             this.$message.success("删除成功");
-            this.getData();
           } else {
             this.$message.error(res.data.message);
           }
@@ -90,7 +89,7 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    },
+    }
   },
   mounted() {
     this.getData();

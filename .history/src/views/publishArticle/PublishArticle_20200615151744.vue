@@ -39,7 +39,7 @@
             </el-select>
           </el-form-item>
           <el-form-item label="重要性" prop="star" :rules="[{required: true,}]">
-            <el-select v-model="ruleForm.star" placeholder="请选择">
+            <el-select v-model="ruleForm.star*1" placeholder="请选择">
               <el-option
                 v-for="(item,index) in star"
                 :key="index"

@@ -18,9 +18,9 @@
       </el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
-          <el-button size="mini" type="success" @click="handlecheck(scope.row)">查看</el-button>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.$id, scope.row)">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete(scope.$id, scope.row)">删除</el-button>
+          <el-button size="mini" type="success" @click="handlecheck(scope.$id, scope.row)">查看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -73,15 +73,14 @@ export default {
     handleCurrentChange(val) {
       this.currentPage = val;
     },
-    handleDelete(row) {
+    handleDelete(id, row) {
       axios
         .post(`/api/article/delete`, {
-          _id: row._id
+          _id: row_id
         })
         .then(res => {
           if (res.data.code === 200) {
             this.$message.success("删除成功");
-            this.getData();
           } else {
             this.$message.error(res.data.message);
           }
@@ -90,7 +89,7 @@ export default {
         .catch(err => {
           console.log(err);
         });
-    },
+    }
   },
   mounted() {
     this.getData();

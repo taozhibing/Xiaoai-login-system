@@ -13,14 +13,14 @@
           <el-rate v-model="scope.row.star"></el-rate>
         </template>
       </el-table-column>
-      <el-table-column label="发布时间" width="240" prop="date">
+      <el-table-column label="发布时间" width="200" prop="date">
         <template slot-scope="scope">{{scope.row.date}}</template>
       </el-table-column>
       <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
-          <el-button size="mini" type="success" @click="handlecheck(scope.row)">查看</el-button>
+        <template>
+          <el-button size="mini" type="primary" @click="handleEdit()">编辑</el-button>
+          <el-button size="mini" type="danger" @click="handleDelete()">删除</el-button>
+          <el-button size="mini" type="success" @click="handlecheck()">查看</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -57,8 +57,7 @@ export default {
         .get("/api/article/allArticle")
         .then(res => {
           this.tableData = res.data.data;
-          this.tableData.map(item => {
-            item.star = item.star * 1;
+          tableData.map(item => {
             item.date = dayjs(item.date).format("YYYY年MM月DD日HH时mm分ss秒");
           });
           console.log(res.data);
@@ -72,25 +71,7 @@ export default {
     },
     handleCurrentChange(val) {
       this.currentPage = val;
-    },
-    handleDelete(row) {
-      axios
-        .post(`/api/article/delete`, {
-          _id: row._id
-        })
-        .then(res => {
-          if (res.data.code === 200) {
-            this.$message.success("删除成功");
-            this.getData();
-          } else {
-            this.$message.error(res.data.message);
-          }
-          console.log(res.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    },
+    }
   },
   mounted() {
     this.getData();

@@ -80,8 +80,8 @@ export default {
         })
         .then(res => {
           if (res.data.code === 200) {
-            this.$message.success("删除成功");
             this.getData();
+            this.$message.success("删除成功");
           } else {
             this.$message.error(res.data.message);
           }

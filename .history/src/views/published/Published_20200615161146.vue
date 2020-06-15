@@ -81,7 +81,6 @@ export default {
         .then(res => {
           if (res.data.code === 200) {
             this.$message.success("删除成功");
-            this.getData();
           } else {
             this.$message.error(res.data.message);
           }
@@ -91,6 +90,21 @@ export default {
           console.log(err);
         });
     },
+    getData() {
+      axios
+        .get("/api/article/allArticle")
+        .then(res => {
+          this.tableData = res.data.data;
+          this.tableData.map(item => {
+            item.star = item.star * 1;
+            item.date = dayjs(item.date).format("YYYY年MM月DD日HH时mm分ss秒");
+          });
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
   },
   mounted() {
     this.getData();

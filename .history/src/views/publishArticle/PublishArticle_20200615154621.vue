@@ -132,23 +132,23 @@ export default {
       ],
       star: [
         {
-          label: "1",
+          label: "1颗星",
           value: "1"
         },
         {
-          label: "2",
+          label: "2颗星",
           value: "2"
         },
         {
-          label: "3",
+          label: "3颗星",
           value: "3"
         },
         {
-          label: "4",
+          label: "4颗星",
           value: "4"
         },
         {
-          label: "5",
+          label: "5颗星",
           value: "5"
         }
       ],

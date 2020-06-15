@@ -166,7 +166,7 @@ export default {
               author: this.ruleForm.author,
               category: this.ruleForm.category,
               source: this.ruleForm.source,
-              star: this.ruleForm.star,
+              star: this.Number(ruleForm.star),
               text: this.text,
               data: this.ruleForm.data
             })
