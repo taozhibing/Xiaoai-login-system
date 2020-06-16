@@ -15,7 +15,7 @@
     <div class="article">
       <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="文章标题" prop="title" :rules="[{required: true,message: '请输入文章标题', }]">
-          <el-input v-model="ruleForm.title">{{obj.title}}</el-input>
+          <el-input v-model="ruleForm.title"></el-input>
         </el-form-item>
         <el-form-item label="文章摘要" prop="abstract" :rules="[{required: true,message: '请输入文章摘要', }]">
           <el-input v-model="ruleForm.abstract"></el-input>
@@ -66,7 +66,7 @@
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor v-model="ruleForm.text"/>
+      <mavon-editor v-model="text" />
     </div>
   </div>
 </template>
@@ -79,7 +79,15 @@ export default {
   components: {},
   data() {
     return {
-      ruleForm: {},
+      ruleForm: {
+        title: "",
+        abstract: "",
+        author: "",
+        category: "",
+        source: "",
+        star: "",
+        date: ""
+      },
       category: [
         {
           label: "vue",
@@ -150,13 +158,11 @@ export default {
           value: "5"
         }
       ],
-      text: "",
-      obj: {},
-      id: ""
+      text: ""
     };
   },
   methods: {
-    publish() {
+     publish() {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           axios
@@ -168,14 +174,12 @@ export default {
               source: this.ruleForm.source,
               star: this.ruleForm.star,
               text: this.text,
-              data: this.ruleForm.data,
-              id: this.id
+              data: this.ruleForm.data
             })
             .then(res => {
               if (res.data.code === 200) {
-                this.obj = res.data.data;
                 this.$message.success("发布成功");
-                this.$router.push("published");
+                this.$router.push('')
               } else {
                 this.$message.error(res.data.message);
               }
@@ -187,23 +191,14 @@ export default {
         }
       });
     },
-    revert() {
+    checked() {
+      this.$router.push('published')
+    },
+     revert() {
       this.$router.push("published");
-    }
+    },  
   },
-  mounted() {
-    this.id = this.$route.query._id;
-     axios
-        .post(`/api/article/article`, {
-          _id: this.id
-        })
-        .then(res => {
-          this.ruleForm = res.data.data
-        })
-        .catch(err => {
-          console.log(err);
-        });
-  },
+  mounted() {},
   watch: {},
   computed: {}
 };
@@ -211,6 +206,7 @@ export default {
 
 <style scoped lang='scss'>
 .container {
+  display: flex;
   width: 100%;
 }
 .top {
@@ -220,15 +216,5 @@ export default {
 }
 .box1 {
   width: 300px;
-}
-.briefly {
-  display: flex;
-}
-.box {
-  display: flex;
-  margin-top: 20px;
-}
-.article {
-  margin-top: 30px;
 }
 </style>

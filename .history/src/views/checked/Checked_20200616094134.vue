@@ -4,11 +4,11 @@
       <div class="btn">
         <el-button type="primary" @click="revert">返回</el-button>
       </div>
-      <div class="tle">{{obj.title}}</div>
-      <div class="abt">摘要 ：{{obj.abstract}}</div>
+      <div class="tle">{{arr.title}}</div>
+      <div class="abt">摘要 ：{{arr.abstract}}</div>
       <div class="abt">发表于：{{date}}</div>
       <el-card class="box-card">
-        <div class="text">{{obj.text}}</div>
+        <div class="text">{{arr.text}}</div>
       </el-card>
     </div>
   </div>

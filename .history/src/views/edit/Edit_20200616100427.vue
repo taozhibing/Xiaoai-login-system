@@ -66,7 +66,7 @@
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor v-model="ruleForm.text"/>
+      <mavon-editor v-model="text"/>
     </div>
   </div>
 </template>
@@ -167,7 +167,7 @@ export default {
               category: this.ruleForm.category,
               source: this.ruleForm.source,
               star: this.ruleForm.star,
-              text: this.text,
+              text: this.ruleForm.text,
               data: this.ruleForm.data,
               id: this.id
             })

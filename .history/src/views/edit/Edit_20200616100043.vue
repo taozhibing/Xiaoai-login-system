@@ -66,7 +66,7 @@
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor v-model="ruleForm.text"/>
+      <mavon-editor v-model="text" />
     </div>
   </div>
 </template>

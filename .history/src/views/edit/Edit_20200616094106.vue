@@ -66,7 +66,7 @@
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor v-model="ruleForm.text"/>
+      <mavon-editor v-model="text" />
     </div>
   </div>
 </template>
@@ -79,7 +79,15 @@ export default {
   components: {},
   data() {
     return {
-      ruleForm: {},
+      ruleForm: {
+        title: "",
+        abstract: "",
+        author: "",
+        category: "",
+        source: "",
+        star: "",
+        date: ""
+      },
       category: [
         {
           label: "vue",
@@ -151,12 +159,11 @@ export default {
         }
       ],
       text: "",
-      obj: {},
-      id: ""
+      obj : {}
     };
   },
   methods: {
-    publish() {
+     publish() {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           axios
@@ -169,13 +176,13 @@ export default {
               star: this.ruleForm.star,
               text: this.text,
               data: this.ruleForm.data,
-              id: this.id
+             _id: this.id
             })
             .then(res => {
               if (res.data.code === 200) {
-                this.obj = res.data.data;
+                 this.obj = res.data.data;
                 this.$message.success("发布成功");
-                this.$router.push("published");
+                this.$router.push('published')
               } else {
                 this.$message.error(res.data.message);
               }
@@ -187,22 +194,12 @@ export default {
         }
       });
     },
-    revert() {
+     revert() {
       this.$router.push("published");
-    }
+    },  
   },
   mounted() {
     this.id = this.$route.query._id;
-     axios
-        .post(`/api/article/article`, {
-          _id: this.id
-        })
-        .then(res => {
-          this.ruleForm = res.data.data
-        })
-        .catch(err => {
-          console.log(err);
-        });
   },
   watch: {},
   computed: {}

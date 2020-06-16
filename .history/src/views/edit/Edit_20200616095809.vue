@@ -66,7 +66,7 @@
       </el-form>
     </div>
     <div id="main">
-      <mavon-editor v-model="ruleForm.text"/>
+      <mavon-editor v-model="text" />
     </div>
   </div>
 </template>
@@ -79,7 +79,15 @@ export default {
   components: {},
   data() {
     return {
-      ruleForm: {},
+      ruleForm: {
+        title: "",
+        abstract: "",
+        author: "",
+        category: "",
+        source: "",
+        star: "",
+        date: ""
+      },
       category: [
         {
           label: "vue",
@@ -193,16 +201,6 @@ export default {
   },
   mounted() {
     this.id = this.$route.query._id;
-     axios
-        .post(`/api/article/article`, {
-          _id: this.id
-        })
-        .then(res => {
-          this.ruleForm = res.data.data
-        })
-        .catch(err => {
-          console.log(err);
-        });
   },
   watch: {},
   computed: {}
