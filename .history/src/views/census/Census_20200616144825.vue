@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="total_e">
-      <ve-waterfall :data="chartData3"></ve-waterfall>
+      <ve-histogram :data="chartData3"></ve-histogram>
     </div>
   </div>
 </template>
@@ -132,7 +132,12 @@ export default {
   width: 48%;
 }
 .total_e {
-  width: 100%;
-  height: 200px;
+  width: 25%;
+  height: 55px;
+  display: flex;
+  background: rgb(131, 117, 163);
+  position: relative;
+  justify-content: center;
+  align-items: center;
 }
 </style>

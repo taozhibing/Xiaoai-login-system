@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="total_e">
-      <ve-waterfall :data="chartData3"></ve-waterfall>
+      <ve-histogram :data="chartData3"></ve-histogram>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@
 <script>
 import axios from "axios";
 import groupBy from "loadsh/groupBy";
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 export default {
   name: "",
   props: {},
@@ -55,8 +55,8 @@ export default {
         columns: ["日期", "数量"],
         rows: []
       },
-      toda: "",
-      self: ""
+      toda : '',
+      self  : ''
     };
   },
   methods: {},
@@ -67,15 +67,15 @@ export default {
         let obj1 = groupBy(res.data.data, "category");
         for (let i in obj1) {
           this.chartData1.rows.push({
-            数量: obj1[i].length,
-            类目: i
+            '数量': obj1[i].length,
+            '类目': i
           });
         }
         let obj2 = groupBy(res.data.data, "source");
         for (let i in obj2) {
           this.chartData2.rows.push({
-            数量: obj2[i].length,
-            来源: i
+            '数量': obj2[i].length,
+            '来源': i
           });
         }
         res.data.data.map(item => {
@@ -84,8 +84,8 @@ export default {
         let obj3 = groupBy(res.data.data, "date");
         for (let i in obj3) {
           this.chartData3.rows.push({
-            数量: obj3[i].length,
-            日期: i
+            '数量': obj3[i].length,
+            '日期': i
           });
         }
         this.toda = res.data.data.filter(item => {
@@ -130,9 +130,5 @@ export default {
 }
 .total_d {
   width: 48%;
-}
-.total_e {
-  width: 100%;
-  height: 200px;
 }
 </style>

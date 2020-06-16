@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="total_e">
-      <ve-waterfall :data="chartData3"></ve-waterfall>
+      <ve-histogram :data="chartData3"></ve-histogram>
     </div>
   </div>
 </template>

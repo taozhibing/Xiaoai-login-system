@@ -4,14 +4,14 @@
       <div class="total_a" style="background-color: rgb(124, 202, 191);">
         <div class="total_b">
           <div>今日发布</div>
-          <div>{{toda.length}}</div>
+          <div>1</div>
         </div>
         <i class="el-icon-check"></i>
       </div>
       <div class="total_a" style="background-color: rgb(232, 138, 135);">
         <div class="total_b">
           <div>原创文章</div>
-          <div>{{self.length}}</div>
+          <div>1</div>
         </div>
         <i class="el-icon-tickets"></i>
       </div>
@@ -24,24 +24,23 @@
         <ve-ring :data="chartData2" :settings="chartSettings"></ve-ring>
       </div>
     </div>
-    <div class="total_e">
-      <ve-waterfall :data="chartData3"></ve-waterfall>
-    </div>
+    <!-- <div class="total_e">
+      <ve-histogram :data="chartData"></ve-histogram>
+    </div>-->
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import groupBy from "loadsh/groupBy";
-import dayjs from "dayjs";
 export default {
   name: "",
   props: {},
   components: {},
   data() {
-    this.chartSettings = {
-      roseType: "radius"
-    };
+      this.chartSettings = {
+        dimension: 'radius'
+      }
     return {
       chartData1: {
         columns: ["类目", "数量"],
@@ -55,49 +54,35 @@ export default {
         columns: ["日期", "数量"],
         rows: []
       },
-      toda: "",
-      self: ""
     };
   },
   methods: {},
   mounted() {
-    axios
-      .get(`/api/article/allArticle`)
-      .then(res => {
-        let obj1 = groupBy(res.data.data, "category");
-        for (let i in obj1) {
-          this.chartData1.rows.push({
-            数量: obj1[i].length,
-            类目: i
-          });
-        }
-        let obj2 = groupBy(res.data.data, "source");
-        for (let i in obj2) {
-          this.chartData2.rows.push({
-            数量: obj2[i].length,
-            来源: i
-          });
-        }
-        res.data.data.map(item => {
-          item.date = dayjs(item.date).format("YYYY年MM月DD日");
-        });
-        let obj3 = groupBy(res.data.data, "date");
-        for (let i in obj3) {
-          this.chartData3.rows.push({
-            数量: obj3[i].length,
-            日期: i
-          });
-        }
-        this.toda = res.data.data.filter(item => {
-          return item.date === dayjs().format("YYYY年MM月DD日");
-        });
-        this.self = res.data.data.filter(item => {
-          return item.source === "原创";
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    axios.get(`/api/article/allArticle`).then(res => {
+      let obj1 = groupBy(res.data.data,'category')
+      for(let i in obj1) {
+        this.chartData1.rows.push({
+          '分类' : obj1[i].length,
+          '数量' : i
+        })
+      }
+      let obj2 = groupBy(res.data.data,'source')
+      for(let i in obj2) {
+        this.chartData2.rows.push({
+          '数量' : obj2[i].length,
+          '分类' : i
+        })
+      }
+      let obj3 = groupBy(res.data.data,'date')
+      for(let i in obj3) {
+        this.chartData3.rows.push({
+          '数量' : obj3[i].length,
+          '分类' : i
+        })
+      }
+    }).catch(err =>　{
+      console.log(err);
+    })
   },
   watch: {},
   computed: {}
@@ -130,9 +115,5 @@ export default {
 }
 .total_d {
   width: 48%;
-}
-.total_e {
-  width: 100%;
-  height: 200px;
 }
 </style>

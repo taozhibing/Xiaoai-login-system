@@ -4,14 +4,14 @@
       <div class="total_a" style="background-color: rgb(124, 202, 191);">
         <div class="total_b">
           <div>今日发布</div>
-          <div>{{toda.length}}</div>
+          <div>1</div>
         </div>
         <i class="el-icon-check"></i>
       </div>
       <div class="total_a" style="background-color: rgb(232, 138, 135);">
         <div class="total_b">
           <div>原创文章</div>
-          <div>{{self.length}}</div>
+          <div>1</div>
         </div>
         <i class="el-icon-tickets"></i>
       </div>
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="total_e">
-      <ve-waterfall :data="chartData3"></ve-waterfall>
+      <ve-histogram :data="chartData3"></ve-histogram>
     </div>
   </div>
 </template>
@@ -33,7 +33,6 @@
 <script>
 import axios from "axios";
 import groupBy from "loadsh/groupBy";
-import dayjs from "dayjs";
 export default {
   name: "",
   props: {},
@@ -54,9 +53,7 @@ export default {
       chartData3: {
         columns: ["日期", "数量"],
         rows: []
-      },
-      toda: "",
-      self: ""
+      }
     };
   },
   methods: {},
@@ -88,12 +85,6 @@ export default {
             日期: i
           });
         }
-        this.toda = res.data.data.filter(item => {
-          return item.date === dayjs().format("YYYY年MM月DD日");
-        });
-        this.self = res.data.data.filter(item => {
-          return item.source === "原创";
-        });
       })
       .catch(err => {
         console.log(err);
@@ -130,9 +121,5 @@ export default {
 }
 .total_d {
   width: 48%;
-}
-.total_e {
-  width: 100%;
-  height: 200px;
 }
 </style>

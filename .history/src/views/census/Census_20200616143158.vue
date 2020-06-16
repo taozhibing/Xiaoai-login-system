@@ -11,7 +11,7 @@
       <div class="total_a" style="background-color: rgb(232, 138, 135);">
         <div class="total_b">
           <div>原创文章</div>
-          <div>{{self.length}}</div>
+          <div>{{toda.length}}</div>
         </div>
         <i class="el-icon-tickets"></i>
       </div>
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="total_e">
-      <ve-waterfall :data="chartData3"></ve-waterfall>
+      <ve-histogram :data="chartData3"></ve-histogram>
     </div>
   </div>
 </template>
@@ -33,7 +33,7 @@
 <script>
 import axios from "axios";
 import groupBy from "loadsh/groupBy";
-import dayjs from "dayjs";
+import dayjs from 'dayjs';
 export default {
   name: "",
   props: {},
@@ -55,8 +55,8 @@ export default {
         columns: ["日期", "数量"],
         rows: []
       },
-      toda: "",
-      self: ""
+      toda : '',
+      self  : ''
     };
   },
   methods: {},
@@ -130,9 +130,5 @@ export default {
 }
 .total_d {
   width: 48%;
-}
-.total_e {
-  width: 100%;
-  height: 200px;
 }
 </style>
