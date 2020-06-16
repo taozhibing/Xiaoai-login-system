@@ -15,7 +15,7 @@
     <div class="article">
       <el-form :model="ruleForm" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="文章标题" prop="title" :rules="[{required: true,message: '请输入文章标题', }]">
-          <el-input v-model="ruleForm.title"></el-input>
+          <el-input v-model="ruleForm.title">{{obj.title}}</el-input>
         </el-form-item>
         <el-form-item label="文章摘要" prop="abstract" :rules="[{required: true,message: '请输入文章摘要', }]">
           <el-input v-model="ruleForm.abstract"></el-input>
@@ -150,6 +150,8 @@ export default {
           value: "5"
         }
       ],
+      text: "",
+      obj: {},
       id: ""
     };
   },
@@ -158,23 +160,24 @@ export default {
       this.$refs.ruleForm.validate(valid => {
         if (valid) {
           axios
-            .post("/api/article/update", {
+            .post("/api/article/create", {
               title: this.ruleForm.title,
               abstract: this.ruleForm.abstract,
               author: this.ruleForm.author,
               category: this.ruleForm.category,
               source: this.ruleForm.source,
               star: this.ruleForm.star,
-              text: this.ruleForm.text,
+              text: this.obj.text,
               data: this.ruleForm.data,
               id: this.id
             })
             .then(res => {
-              if (res.data.success === true) {
+              if (res.data.code === 200) {
+                this.obj = res.data.data;
                 this.$message.success("发布成功");
                 this.$router.push("published");
               } else {
-                this.$message.error('发布失败');
+                this.$message.error(res.data.message);
               }
               console.log(res.data);
             })

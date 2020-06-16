@@ -5,8 +5,10 @@
 </template>
 
 <script>
+import axios from 'axios';
+import groupBy from 'loadsh/groupBy';
  export default {
-   name: '',
+   name: 'Census',
    props: {
    },
    components: {

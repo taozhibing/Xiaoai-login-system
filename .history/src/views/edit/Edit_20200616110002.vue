@@ -174,7 +174,7 @@ export default {
                 this.$message.success("发布成功");
                 this.$router.push("published");
               } else {
-                this.$message.error('发布失败');
+                this.$message.error(res.data);
               }
               console.log(res.data);
             })
