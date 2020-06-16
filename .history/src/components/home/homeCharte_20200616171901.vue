@@ -92,6 +92,12 @@ export default {
         return item !== item1;
       });
     },
+    // // 展示全部的
+    // clickSelectAll() {
+    //   this.list = this.list.map(item => {
+    //     return item;
+    //   });
+    // },
     // 正在进行的
     clickActive() {
       this.list = this.list.filter(item => {
@@ -180,7 +186,7 @@ export default {
 }
 .hover:hover {
   .el-icon-close {
-    visibility: visible;
+    display: block;
     background: #fc427b;
   }
 }

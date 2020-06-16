@@ -97,13 +97,14 @@ export default {
       this.list = this.list.filter(item => {
         return !item.checked;
       });
-    },
-    // 已完成
+      // 已完成
     clickCompleted() {
       this.list = this.list.filter(item => {
         return item.checked === true;
       });
     }
+    },
+    
   },
   mounted() {},
   watch: {},

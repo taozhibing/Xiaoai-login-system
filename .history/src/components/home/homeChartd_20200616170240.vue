@@ -3,7 +3,7 @@
     <div class="t-table">
       <el-table :data="tableData" stripe style="width: 100%">
         <el-table-column prop="num" label="Order_No" width="300"></el-table-column>
-        <el-table-column prop="price" label="Price" width="100"></el-table-column>
+        <el-table-column prop="price" label="Price" width="150"></el-table-column>
         <el-table-column prop="status" label="Stauts">
           <template slot-scope="scope">
             <div v-if="scope.row.status===0">

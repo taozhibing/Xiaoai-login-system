@@ -3,9 +3,7 @@
     <div class="list">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <div>
-            <i class="el-icon-arrow-down"></i>
-          </div>
+          <div @click="selectAll" :v-model="checkedAll"><i class="el-icon-arrow-down"></i></div>
           <div style="float: right; padding: 3px 0" type="text">Todo List</div>
         </div>
         <div v-for="(item,index) in list" :key="index" class="text item">
@@ -19,15 +17,15 @@
               </div>
             </div>
             <div @click="clickDelete(item)" class="delete">
-              <i class="el-icon-close"></i>
+            <i class="el-icon-close"></i>
             </div>
           </div>
         </div>
         <div class="foot">
-          <div class="items-left">{{sum}} items left</div>
-          <div class="all" @click="selectAll" :v-model="checkedAll">All</div>
-          <div class="active" @click="clickActive">Active</div>
-          <div class="completed" @click="clickCompleted">Completed</div>
+        <div class="items-left">{{sum}} items left</div>
+        <div class="all" @click="clickSelectAll">All</div>
+        <div class="active" @click="clickActive">Active</div>
+        <div class="completed" @click="clickCompleted">Completed</div>
         </div>
       </el-card>
     </div>
@@ -75,50 +73,18 @@ export default {
           checked: true
         }
       ],
-      checkedAll: false
+      checkedAll : false,
     };
   },
   methods: {
-    // 全选按钮
     selectAll() {
       this.checkedAll = !this.checkedAll;
-      this.list.map(item => {
-        item.checked = this.checkedAll;
-      });
-    },
-    // 删除按钮
-    clickDelete(item1) {
-      this.list = this.list.filter(item => {
-        return item !== item1;
-      });
-    },
-    // 正在进行的
-    clickActive() {
-      this.list = this.list.filter(item => {
-        return !item.checked;
-      });
-    },
-    // 已完成
-    clickCompleted() {
-      this.list = this.list.filter(item => {
-        return item.checked === true;
-      });
+
     }
   },
   mounted() {},
   watch: {},
-  computed: {
-    // 显示未完成的
-    sum() {
-      let num = 0;
-      this.list.map(item => {
-        if (item.checked === false) {
-          num++;
-        }
-      });
-      return num;
-    }
-  }
+  computed: {}
 };
 </script>
 
@@ -128,7 +94,7 @@ export default {
 }
 
 .item {
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .clearfix:before,
@@ -142,46 +108,5 @@ export default {
 
 .box-card {
   width: 350px;
-  margin-left: 30px;
-}
-.foot {
-  width: 100%;
-  height: 80px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 20px;
-  border-top: 1px solid #bfc5cb;
-}
-.items-left {
-  font-size: 10px;
-}
-.all {
-  width: 70px;
-  height: 20px;
-  text-align: center;
-  line-height: 20px;
-  font-size: 10px;
-  border: 1px solid #bfc5cb;
-}
-.active {
-  font-size: 10px;
-}
-.completed {
-  font-size: 10px;
-}
-.hover {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.el-icon-close {
-  visibility: hidden;
-}
-.hover:hover {
-  .el-icon-close {
-    visibility: visible;
-    background: #fc427b;
-  }
 }
 </style>

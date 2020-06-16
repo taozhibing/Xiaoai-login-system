@@ -6,7 +6,7 @@
 
 <style lang="scss">
 .el-progress-bar__outer {
-  background-color: rgb(243, 240, 240) !important;
+  background-color: #999 !important;
 }
 .el-upload-dragger {
   background-color: #fff;

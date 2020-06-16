@@ -92,6 +92,12 @@ export default {
         return item !== item1;
       });
     },
+    // // 展示全部的
+    // clickSelectAll() {
+    //   this.list = this.list.map(item => {
+    //     return item;
+    //   });
+    // },
     // 正在进行的
     clickActive() {
       this.list = this.list.filter(item => {
@@ -128,7 +134,7 @@ export default {
 }
 
 .item {
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .clearfix:before,
@@ -141,8 +147,9 @@ export default {
 }
 
 .box-card {
-  width: 350px;
-  margin-left: 30px;
+  width: 26.5%;
+  height: 500px;
+  background: white
 }
 .foot {
   width: 100%;
@@ -175,12 +182,9 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.el-icon-close {
-  visibility: hidden;
-}
 .hover:hover {
   .el-icon-close {
-    visibility: visible;
+    display: block;
     background: #fc427b;
   }
 }

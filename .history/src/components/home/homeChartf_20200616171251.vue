@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
-.box-card {
-  width: 480px;
+.el-progress-bar__outer {
+  background-color: #fff !important;
 }
 </style>

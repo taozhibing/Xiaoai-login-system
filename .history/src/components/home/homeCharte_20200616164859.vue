@@ -3,7 +3,7 @@
     <div class="list">
       <el-card class="box-card">
         <div slot="header" class="clearfix">
-          <div>
+          <div @click="selectAll" :v-model="checkedAll">
             <i class="el-icon-arrow-down"></i>
           </div>
           <div style="float: right; padding: 3px 0" type="text">Todo List</div>
@@ -25,7 +25,7 @@
         </div>
         <div class="foot">
           <div class="items-left">{{sum}} items left</div>
-          <div class="all" @click="selectAll" :v-model="checkedAll">All</div>
+          <div class="all" @click="clickSelectAll">All</div>
           <div class="active" @click="clickActive">Active</div>
           <div class="completed" @click="clickCompleted">Completed</div>
         </div>
@@ -92,6 +92,12 @@ export default {
         return item !== item1;
       });
     },
+    // 展示全部的
+    clickSelectAll() {
+      this.list = this.list.map(item => {
+        return item;
+      });
+    },
     // 正在进行的
     clickActive() {
       this.list = this.list.filter(item => {
@@ -110,7 +116,7 @@ export default {
   computed: {
     // 显示未完成的
     sum() {
-      let num = 0;
+      let sum = 0;
       this.list.map(item => {
         if (item.checked === false) {
           num++;
@@ -128,7 +134,7 @@ export default {
 }
 
 .item {
-  margin-bottom: 10px;
+  margin-bottom: 18px;
 }
 
 .clearfix:before,
@@ -142,7 +148,6 @@ export default {
 
 .box-card {
   width: 350px;
-  margin-left: 30px;
 }
 .foot {
   width: 100%;
@@ -175,12 +180,9 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
-.el-icon-close {
-  visibility: hidden;
-}
 .hover:hover {
   .el-icon-close {
-    visibility: visible;
+    display: block;
     background: #fc427b;
   }
 }
