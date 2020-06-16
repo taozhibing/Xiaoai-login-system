@@ -6,34 +6,7 @@
     >
       <el-table-column label="标题" width="300" prop="title"></el-table-column>
       <el-table-column label="作者" width="120" prop="author"></el-table-column>
-      <el-table-column label="类目" width="120" prop="category">
-        <template slot-scope="scope">
-          <div v-if="scope.row.category==='Vue'">
-            <el-tag type="success">{{scope.row.category}}</el-tag>
-          </div>
-          <div v-else-if="scope.row.category==='React'">
-            <el-tag type="info">{{scope.row.category}}</el-tag>
-          </div>
-          <div v-else-if="scope.row.category==='Node.js'">
-            <el-tag type="warning">{{scope.row.category}}</el-tag>
-          </div>
-          <div v-else-if="scope.row.category==='性能优化'">
-            <el-tag type="success">{{scope.row.category}}</el-tag>
-          </div>
-          <div v-else-if="scope.row.category==='JavaScript'">
-            <el-tag type="warning">{{scope.row.category}}</el-tag>
-          </div>
-          <div v-else-if="scope.row.category==='小程序'">
-            <el-tag type="danger">{{scope.row.category}}</el-tag>
-          </div>
-          <div v-else-if="scope.row.category==='工具类'">
-            <el-tag type="danger">{{scope.row.category}}</el-tag>
-          </div>
-          <div v-else-if="scope.row.category==='其他'">
-            <el-tag>{{scope.row.category}}</el-tag>
-          </div>
-        </template>
-      </el-table-column>
+      <el-table-column label="类目" width="120" prop="category"></el-table-column>
       <el-table-column label="来源" width="120" prop="source"></el-table-column>
       <el-table-column label="重要性" width="160" prop="star">
         <template slot-scope="scope">
@@ -100,9 +73,6 @@ export default {
     handleCurrentChange(val) {
       this.currentPage = val;
     },
-    handleEdit(row) {
-       this.$router.push({name:'Edit',query:{_id:row._id}});
-    },
     handleDelete(row) {
       axios
         .post(`/api/article/delete`, {
@@ -122,7 +92,7 @@ export default {
         });
     },
     handlecheck(row) {
-      this.$router.push({name:'Checked',query:{_id:row._id}});
+      this.$router.push('checked')
     }
   },
   mounted() {

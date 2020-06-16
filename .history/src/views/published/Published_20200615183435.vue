@@ -102,6 +102,7 @@ export default {
     },
     handleEdit(row) {
        this.$router.push({name:'Edit',query:{_id:row._id}});
+
     },
     handleDelete(row) {
       axios

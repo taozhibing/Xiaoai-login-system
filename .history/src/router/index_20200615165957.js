@@ -92,15 +92,7 @@ const routes = [
         name: 'Checked',
         component: () => import('../views/checked/Checked'),
         meta: {
-          title: '查看文章页'
-        }
-      },
-      {
-        path: 'edit',
-        name: 'Edit',
-        component: () => import('../views/edit/Edit'),
-        meta: {
-          title: '编辑页'
+          title: '退出系统页'
         }
       },
     ]

@@ -100,9 +100,6 @@ export default {
     handleCurrentChange(val) {
       this.currentPage = val;
     },
-    handleEdit(row) {
-       this.$router.push({name:'Edit',query:{_id:row._id}});
-    },
     handleDelete(row) {
       axios
         .post(`/api/article/delete`, {
